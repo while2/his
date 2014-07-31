@@ -1,10 +1,16 @@
-his
+his C++ template utility library
 ===
 > *He* wrote this, and named it *his*.
 
+This C++ template library mainly contains two parts:
+
+1. ImageProcessing provides abstraction of 2d images, and different types of iteration functions. The idea is to define the iteration processes by C++11 lambda expressions. It also works with normal functors, but that's not recommended. If your compiler supports lambda expression, this library can brought huge convenience.
+2. DataStructure provides some advanced data structures not supported by stl. Some of them benefits more from lambda expressions.
+3. Miscellaneous currently contains only a global variable accessor, implementing 'The' semantics.
+ 
 To use this lib, just include the header files.
 
-
+#ImageProcessing
 ## MatrixWrapper & Matrix 
 [MatrixWrapper.hpp](ImageProcessing/MatrixWrapper.hpp) 
 [Matrix.hpp](ImageProcessing/Matrix.hpp)
@@ -117,6 +123,7 @@ See a full version in function FilterSample at [sample.cpp](https://github.com/w
 
 This [post](http://while2.github.io/abstraction-of-filter.html) explains more details.
 
+#Miscellaneous
 ## 'The' semantics: a global variable utility
 [The.hpp](Miscellaneous/The.hpp)
 
