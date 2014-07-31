@@ -20,9 +20,9 @@
 enum Mask { OUTSIDE = 0, INSIDE = 255, };
 
 /*
-	This function shows a face transfer application with Poisson
-	Image Editing. Build a Poisson Equation, holding monnalisa's 
-	gradients with lena's boundary pixels in a facial area.
+	This function shows a facial transfer application with Poisson
+	Image Editing, by solving a Poisson Equation, which claim monalisa's 
+	gradients in the facial area, while holding lena's boundary pixels.
 */
 void PoissonImageEditing()
 {
