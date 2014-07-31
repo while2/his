@@ -40,7 +40,7 @@ void for_each_pair(Mat1 &mat, Func func)
 	// first column
 	auto up = mat[0];
 	auto down = mat[1];
-	for (size_t y = 1; y < mat.rows(); ++y)
+	for (int y = 1; y < mat.rows(); ++y)
 	{
 		func(*up, *down);
 		up += mat.step(), down += mat.step();
@@ -49,19 +49,19 @@ void for_each_pair(Mat1 &mat, Func func)
 	// first row
 	auto left = mat[0];
 	auto right = mat[0] + 1;
-	for (size_t x = 1; x < mat.cols(); ++x)
+	for (int x = 1; x < mat.cols(); ++x)
 	{
 		func(*left, *right);
 		left += 1, right += 1;
 	}
 
 	// the rest
-	for (size_t y = 1; y < mat.rows(); ++y)
+	for (int y = 1; y < mat.rows(); ++y)
 	{
 		auto up = mat[y - 1] + 1;
 		auto left = mat[y];
 		auto center = mat[y] + 1;
-		for (size_t x = 1; x < mat.cols(); ++x)
+		for (int x = 1; x < mat.cols(); ++x)
 		{
 			func(*up, *center);
 			func(*left, *center);
@@ -82,7 +82,7 @@ void for_each_pair(Mat1 &mat1, Mat2 &mat2, Func func)
 	auto down1 = mat1[1];
 	auto up2 = mat2[0];
 	auto down2 = mat2[1];
-	for (size_t y = 1; y < mat1.rows(); ++y)
+	for (int y = 1; y < mat1.rows(); ++y)
 	{
 		func(*up1, *down1, *up2, *down2);
 		up1 += mat1.step(), down1 += mat1.step();
@@ -94,7 +94,7 @@ void for_each_pair(Mat1 &mat1, Mat2 &mat2, Func func)
 	auto right1 = mat1[0] + 1;
 	auto left2 = mat2[0];
 	auto right2 = mat2[0] + 1;
-	for (size_t x = 1; x < mat1.cols(); ++x)
+	for (int x = 1; x < mat1.cols(); ++x)
 	{
 		func(*left1, *right1, *left2, *right2);
 		left1 += 1, right1 += 1;
@@ -102,7 +102,7 @@ void for_each_pair(Mat1 &mat1, Mat2 &mat2, Func func)
 	}
 
 	// the rest
-	for (size_t y = 1; y < mat1.rows(); ++y)
+	for (int y = 1; y < mat1.rows(); ++y)
 	{
 		auto up1 = mat1[y - 1] + 1;
 		auto left1 = mat1[y];
@@ -110,7 +110,7 @@ void for_each_pair(Mat1 &mat1, Mat2 &mat2, Func func)
 		auto up2 = mat2[y - 1] + 1;
 		auto left2 = mat2[y];
 		auto center2 = mat2[y] + 1;
-		for (size_t x = 1; x < mat1.cols(); ++x)
+		for (int x = 1; x < mat1.cols(); ++x)
 		{
 			func(*up1, *center1, *up2, *center2);
 			func(*left1, *center1, *left2, *center2);
@@ -139,7 +139,7 @@ void for_each_pair(Mat1 &mat1, Mat2 &mat2, Mat3 &mat3, Func func)
 	auto up3 = mat3[0];
 	auto down3 = mat3[1];
 
-	for (size_t y = 1; y < mat1.rows(); ++y)
+	for (int y = 1; y < mat1.rows(); ++y)
 	{
 		func(*up1, *down1, *up2, *down2, *up3, *down3);
 		up1 += mat1.step(), down1 += mat1.step();
@@ -157,7 +157,7 @@ void for_each_pair(Mat1 &mat1, Mat2 &mat2, Mat3 &mat3, Func func)
 	auto left3 = mat3[0];
 	auto right3 = mat3[0] + 1;
 
-	for (size_t x = 1; x < mat1.cols(); ++x)
+	for (int x = 1; x < mat1.cols(); ++x)
 	{
 		func(*left1, *right1, *left2, *right2, *left3, *right3);
 		left1 += 1, right1 += 1;
@@ -166,7 +166,7 @@ void for_each_pair(Mat1 &mat1, Mat2 &mat2, Mat3 &mat3, Func func)
 	}
 
 	// the rest
-	for (size_t y = 1; y < mat1.rows(); ++y)
+	for (int y = 1; y < mat1.rows(); ++y)
 	{
 		auto up1 = mat1[y - 1] + 1;
 		auto left1 = mat1[y];
@@ -180,7 +180,7 @@ void for_each_pair(Mat1 &mat1, Mat2 &mat2, Mat3 &mat3, Func func)
 		auto left3 = mat3[y];
 		auto center3 = mat3[y] + 1;
 
-		for (size_t x = 1; x < mat1.cols(); ++x)
+		for (int x = 1; x < mat1.cols(); ++x)
 		{
 			func(*up1, *center1, *up2, *center2, *up3, *center3);
 			func(*left1, *center1, *left2, *center2, *left3, *center3);
@@ -216,7 +216,7 @@ void for_each_pair(Mat1 &mat1, Mat2 &mat2, Mat3 &mat3, Mat4 &mat4, Func func)
 	auto up4 = mat4[0];
 	auto down4 = mat4[1];
 
-	for (size_t y = 1; y < mat1.rows(); ++y)
+	for (int y = 1; y < mat1.rows(); ++y)
 	{
 		func(*up1, *down1, *up2, *down2, *up3, *down3, *up4, *down4);
 		up1 += mat1.step(), down1 += mat1.step();
@@ -238,7 +238,7 @@ void for_each_pair(Mat1 &mat1, Mat2 &mat2, Mat3 &mat3, Mat4 &mat4, Func func)
 	auto left4 = mat4[0];
 	auto right4 = mat4[0] + 1;
 
-	for (size_t x = 1; x < mat1.cols(); ++x)
+	for (int x = 1; x < mat1.cols(); ++x)
 	{
 		func(*left1, *right1, *left2, *right2, *left3, *right3, *left4, *right4);
 		left1 += 1, right1 += 1;
@@ -248,7 +248,7 @@ void for_each_pair(Mat1 &mat1, Mat2 &mat2, Mat3 &mat3, Mat4 &mat4, Func func)
 	}
 
 	// the rest
-	for (size_t y = 1; y < mat1.rows(); ++y)
+	for (int y = 1; y < mat1.rows(); ++y)
 	{
 		auto up1 = mat1[y - 1] + 1;
 		auto left1 = mat1[y];
@@ -266,7 +266,7 @@ void for_each_pair(Mat1 &mat1, Mat2 &mat2, Mat3 &mat3, Mat4 &mat4, Func func)
 		auto left4 = mat4[y];
 		auto center4 = mat4[y] + 1;	
 
-		for (size_t x = 1; x < mat1.cols(); ++x)
+		for (int x = 1; x < mat1.cols(); ++x)
 		{
 			func(*up1, *center1, *up2, *center2, *up3, *center3, *up4, *center4);
 			func(*left1, *center1, *left2, *center2, *left3, *center3, *left4, *center4);

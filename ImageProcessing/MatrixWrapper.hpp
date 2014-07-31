@@ -39,13 +39,13 @@ public:
 		Inputs:
 		void *start: 
 			The beginning of the image data.			
-		size_t rows, size_t cols:
+		int rows, int cols:
 			Size of the image.		
-		size_t step:
+		int step:
 			Number of elements to jump from one row to the next 
 			at the same column.
 	*/
-	MatrixWrapper(void *start, size_t rows, size_t cols, size_t step)
+	MatrixWrapper(void *start, int rows, int cols, int step)
 		:m_start(static_cast<T*>(start))
 		,m_rows(rows), m_cols(cols), m_step(step)
 	{}
@@ -53,11 +53,11 @@ public:
 
 	/*
 		Inputs:
-		void *start, size_t rows, size_t cols:
+		void *start, int rows, int cols:
 			The same as the previous version.
 		With step equals to cols.
 	*/
-	MatrixWrapper(void *start, size_t rows, size_t cols)
+	MatrixWrapper(void *start, int rows, int cols)
 		:m_start(static_cast<T*>(start))
 		,m_rows(rows), m_cols(cols), m_step(cols)
 	{}
@@ -70,8 +70,8 @@ public:
 	*/
 	void set(const T &init_val)
 	{
-		for (size_t y = 0; y < rows(); ++y)
-			for (size_t x = 0; x < rows(); ++x)
+		for (int y = 0; y < rows(); ++y)
+			for (int x = 0; x < cols(); ++x)
 				(*this)[y][x] = init_val;
 	}
 	
@@ -84,7 +84,7 @@ public:
 	void copy_to(MatrixWrapper &dst) const
 	{
 		assert(dst.rows() == rows() && dst.cols() == cols());
-		for (size_t y = 0; y < rows(); ++y)
+		for (int y = 0; y < rows(); ++y)
 			memcpy(dst[y], (*this)[y], m_cols * sizeof(T));
 	}
 
@@ -98,13 +98,13 @@ public:
 				These arguments can be negative(if this matrix has already been
 				cropped, you can get back to the original one), but make sure 
 				you know what's going on.
-			size_t rows, size_t cols:
+			int rows, int cols:
 				The size of the cropped image.
 		Output:
 			Return a new MatrixWrapper represents the cropped image. Usually 
 			this would be a part of the original ones.
 	*/
-	MatrixWrapper crop(int top, int left, size_t rows, size_t cols) const
+	MatrixWrapper crop(int top, int left, int rows, int cols) const
 	{
 		assert(top + rows <= m_rows && left + cols <= m_cols);
 		MatrixWrapper<T> sub(m_start, rows, cols, step());
@@ -178,9 +178,9 @@ public:
 			T *start()			{ return m_start; }
 	const	T *start() const	{ return m_start; }
 
-	size_t rows() const { return m_rows; }
-	size_t cols() const { return m_cols; }
-	size_t step() const { return m_step; }
+	int rows() const { return m_rows; }
+	int cols() const { return m_cols; }
+	int step() const { return m_step; }
 
 
 	// A contract to make type checking in for_each functions
@@ -188,7 +188,7 @@ public:
 
 protected:
 	T *m_start;
-	size_t m_rows, m_cols, m_step;
+	int m_rows, m_cols, m_step;
 };
 
 

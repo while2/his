@@ -29,12 +29,12 @@ public:
 	Matrix()
 	{}
 
-	Matrix(size_t rows, size_t cols)
+	Matrix(int rows, int cols)
 	{
 		create(rows, cols);
 	}
 	
-	void create(size_t rows, size_t cols)
+	void create(int rows, int cols)
 	{
 		m_rows = rows, m_cols = cols, m_step = cols;
 		m_data = std::shared_ptr<T>(new T[rows * cols], 
@@ -51,7 +51,7 @@ public:
 				These arguments can be negative(if this matrix has already been
 				cropped, you can get back to the original one), but make sure 
 				you know what's going on.
-			size_t rows, size_t cols:
+			int rows, int cols:
 				The size of the cropped image.
 		Output:
 			Return a new MatrixWrapper represents the cropped image. Usually 
@@ -61,7 +61,7 @@ public:
 			The cropped matrix still shares data with the origin one. To create
 			a new matrix, call clone() after crop.
 	*/
-	Matrix crop(int top, int left, size_t rows, size_t cols) const
+	Matrix crop(int top, int left, int rows, int cols) const
 	{
 		assert(top + rows <= m_rows && left + cols <= m_cols);
 		Matrix<T> sub = *this;

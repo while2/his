@@ -34,17 +34,17 @@ namespace his
 */
 struct Idx
 {
-	size_t x, y;
-	Idx(size_t _x, size_t _y) : x(_x), y(_y) {}
+	int x, y;
+	Idx(int _x, int _y) : x(_x), y(_y) {}
 
 	// move pointer in the same row
-	void operator+=(size_t _x) { x += _x; }
+	void operator+=(int _x) { x += _x; }
 
 	// move pointer to the next row
 	enum Step {};
 	void operator+=(Step step) { ++y; }
 
-	Idx operator+(size_t _x) { return Idx(x+_x, y); }
+	Idx operator+(int _x) { return Idx(x+_x, y); }
 	const Idx &operator*() { return *this; }
 };
 
@@ -64,7 +64,7 @@ template<typename T> class MatrixWrapper;
 class IdxMap
 {
 public:
-	IdxMap(size_t rows, size_t cols) 
+	IdxMap(int rows, int cols) 
 		: m_rows(rows), m_cols(cols)
 	{}
 
@@ -73,13 +73,14 @@ public:
 		: m_rows(mat.rows()), m_cols(mat.cols())
 	{}
 
-	Idx operator[](int y)	{	return Idx(0, y);	}
+	Idx operator[](int y)			{ return Idx(0, y); }
+	Idx operator()(int y, int x)	{ return Idx(x, y); }
 
 	// size
-	size_t rows() const { return m_rows; }
-	size_t cols() const { return m_cols; }
+	int rows() const { return m_rows; }
+	int cols() const { return m_cols; }
 	
-	size_t m_rows, m_cols;
+	int m_rows, m_cols;
 
 	// for_each methods add step() to the pointer to jump to next row,
 	// IdxMap return a different type to distinguish the change of row

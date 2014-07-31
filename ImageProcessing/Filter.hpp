@@ -30,13 +30,13 @@
 			his::gaussian_kernel<float>(11, 11, 10),
 			[&](const uchar rgb[3], float w)
 		{
-			for (size_t i = 0; i < 3; ++i)
+			for (int i = 0; i < 3; ++i)
 				sum_rgb[i] += rgb[i] * w;
 			sum_w += w;
 		},
 			[&](uchar rgb[3])
 		{
-			for (size_t i = 0; i < 3; ++i)
+			for (int i = 0; i < 3; ++i)
 			{
 				rgb[i] = uchar(sum_rgb[i] / sum_w);
 				sum_rgb[i] = 0;
@@ -101,7 +101,7 @@ void filter(const Mat1 input, Mat2 output, const Mat3 kernel, AccmFunc accm, Eva
 	assert(kernel.rows()*2+1 < input.rows() && kernel.cols()*2+1 < input.cols());
 	assert(input.rows() == output.rows() && input.cols() == output.cols());
 
-	auto parse_with_check = [&](size_t x, size_t y)
+	auto parse_with_check = [&](int x, int y)
 	{
 		// The kernel need to be cropped at the boundary
 		int x0 = std::max<int>(x - kernel.cols() / 2, 0);
@@ -117,29 +117,29 @@ void filter(const Mat1 input, Mat2 output, const Mat3 kernel, AccmFunc accm, Eva
 	};
 
 	// top
-	for (size_t y = 0; y < kernel.rows()/2; ++y)
-		for (size_t x = 0; x < input.cols(); ++x)
+	for (int y = 0; y < kernel.rows()/2; ++y)
+		for (int x = 0; x < input.cols(); ++x)
 			parse_with_check(x, y);
 		
 	// bottom
-	for (size_t y = input.rows() - kernel.rows()/2; y < input.rows(); ++y)
-		for (size_t x = 0; x < input.cols(); ++x)
+	for (int y = input.rows() - kernel.rows()/2; y < input.rows(); ++y)
+		for (int x = 0; x < input.cols(); ++x)
 			parse_with_check(x, y);
 
 	// left
-	for (size_t y = kernel.rows()/2; y < input.rows() - kernel.rows()/2; ++y)
-		for (size_t x = 0; x < kernel.rows()/2; ++x)
+	for (int y = kernel.rows()/2; y < input.rows() - kernel.rows()/2; ++y)
+		for (int x = 0; x < kernel.rows()/2; ++x)
 			parse_with_check(x, y);
 		
 	// right
-	for (size_t y = kernel.rows()/2; y < input.rows() - kernel.rows()/2; ++y)
-		for (size_t x = input.cols() - kernel.rows()/2; x < input.cols(); ++x)
+	for (int y = kernel.rows()/2; y < input.rows() - kernel.rows()/2; ++y)
+		for (int x = input.cols() - kernel.rows()/2; x < input.cols(); ++x)
 			parse_with_check(x, y);
 
 	// central part, no boundary checks
-	for (size_t y = kernel.rows()/2; y < input.rows() - kernel.rows()/2; ++y)
+	for (int y = kernel.rows()/2; y < input.rows() - kernel.rows()/2; ++y)
 	{
-		for (size_t x = kernel.cols()/2; x < input.cols() - kernel.cols()/2; ++x)
+		for (int x = kernel.cols()/2; x < input.cols() - kernel.cols()/2; ++x)
 		{
 			his::for_each(input.crop(y - kernel.rows()/2, x - kernel.cols()/2, kernel.rows(), kernel.cols()),
 				kernel, accm);
@@ -153,7 +153,7 @@ void filter(const Mat1 input, Mat2 output, const Mat3 kernel, AccmFunc accm, Eva
 /*
 	This function creates a gaussian kernel
 	Input:
-	size_t rows, size_t cols:
+	int rows, int cols:
 		The kernel size
 	double sigma
 		The smooth controling parameter for gaussian function.
@@ -165,13 +165,13 @@ void filter(const Mat1 input, Mat2 output, const Mat3 kernel, AccmFunc accm, Eva
 	distance from the center pixel, sigma is a parameter.
 */
 template<typename T>
-his::Matrix<T> gaussian_kernel(size_t rows, size_t cols, double sigma)
+his::Matrix<T> gaussian_kernel(int rows, int cols, double sigma)
 {
 	his::Matrix<T> kernel(rows, cols);
 	double factor = 0.5 / (sigma * sigma); // prepared the factor depend on sigma
-	for (size_t dy = 0; dy <= rows/2; ++dy)
+	for (int dy = 0; dy <= rows/2; ++dy)
 	{
-		for (size_t dx = 0; dx <= cols/2; ++dx)
+		for (int dx = 0; dx <= cols/2; ++dx)
 		{
 			double w = exp(-factor * (dx*dx+dy*dy));
 			kernel(rows/2-dy, rows/2-dx) = T(w);

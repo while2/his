@@ -47,10 +47,10 @@ void for_each(Mat1 mat, Func func)
 {
 	Mat1::FOR_EACH_ABLE;
 
-	for (size_t y = 0; y < mat.rows(); ++y)
+	for (int y = 0; y < mat.rows(); ++y)
 	{
 		auto p = mat[y];
-		for (size_t x = 0; x < mat.cols(); ++x)
+		for (int x = 0; x < mat.cols(); ++x)
 		{
 			func(*p);
 			p += 1;
@@ -68,11 +68,11 @@ void for_each(Mat1 mat1, Mat2 mat2, Func func)
 
 	assert(mat1.rows() == mat2.rows() && mat1.cols() == mat2.cols());
 
-	for (size_t y = 0; y < mat1.rows(); ++y)
+	for (int y = 0; y < mat1.rows(); ++y)
 	{
 		auto p1 = mat1[y];
 		auto p2 = mat2[y];
-		for (size_t x = 0; x < mat1.cols(); ++x)
+		for (int x = 0; x < mat1.cols(); ++x)
 		{
 			func(*p1, *p2);
 			p1 += 1, p2 += 1;
@@ -92,12 +92,12 @@ void for_each(Mat1 mat1, Mat2 mat2, Mat3 mat3, Func func)
 	assert(mat1.rows() == mat2.rows() && mat1.cols() == mat2.cols());
 	assert(mat1.rows() == mat3.rows() && mat1.cols() == mat3.cols());
 				
-	for (size_t y = 0; y < mat1.rows(); ++y)
+	for (int y = 0; y < mat1.rows(); ++y)
 	{
 		auto p1 = mat1[y];
 		auto p2 = mat2[y];
 		auto p3 = mat3[y];
-		for (size_t x = 0; x < mat1.cols(); ++x)
+		for (int x = 0; x < mat1.cols(); ++x)
 		{
 			func(*p1, *p2, *p3);
 			p1 += 1, p2 += 1, p3 += 1;
@@ -119,13 +119,13 @@ void for_each(Mat1 mat1, Mat2 mat2, Mat3 mat3, Mat4 &mat4, Func func)
 	assert(mat1.rows() == mat3.rows() && mat1.cols() == mat3.cols());
 	assert(mat1.rows() == mat4.rows() && mat1.cols() == mat4.cols());
 		
-	for (size_t y = 0; y < mat1.rows(); ++y)
+	for (int y = 0; y < mat1.rows(); ++y)
 	{
 		auto p1 = mat1[y];
 		auto p2 = mat2[y];
 		auto p3 = mat3[y];
 		auto p4 = mat4[y];
-		for (size_t x = 0; x < mat1.cols(); ++x)
+		for (int x = 0; x < mat1.cols(); ++x)
 		{
 			func(*p1, *p2, *p3, *p4);
 			p1 += 1, p2 += 1, p3 += 1, p4 += 1;
