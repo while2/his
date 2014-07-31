@@ -5,7 +5,7 @@
 #include <vector>
 using namespace std;
 
-#include "DataStructure/SegmentTree.hpp"
+#include "his/DataStructure/SegmentTree.hpp"
 
 /*
 	Use SegmentTree for range summation on a vector<int>.

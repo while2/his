@@ -1,3 +1,12 @@
+/*	================================================================
+	Some samples to demonstrate the usage of for_each/for_each_pair
+	functions. These functions provide abstract interfaces to iterate
+	2d images.
+
+	Dependencies:
+	Opencv:	http://opencv.org/
+*/
+
 #include <cassert>
 #include <cstdio>
 

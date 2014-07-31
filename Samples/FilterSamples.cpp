@@ -1,7 +1,16 @@
+/*	================================================================
+	This sample shows the usage of function filter. Function filter 
+	takes two functors to define a linear, non-linear, or even non-
+	numerical filters, without caring about the trivial iteratiions.
+
+	Dependencies:
+	Opencv:	http://opencv.org/
+*/
+
 #include <opencv2/opencv.hpp>
 
-#include "ImageProcessing/MatrixWrapper.hpp"
-#include "ImageProcessing/Filter.hpp"
+#include "his/ImageProcessing/MatrixWrapper.hpp"
+#include "his/ImageProcessing/Filter.hpp"
 
 /*
 	A Gaussian Blur sample with function filter.
