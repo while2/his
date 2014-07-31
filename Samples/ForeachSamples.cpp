@@ -3,11 +3,8 @@
 
 #include <opencv2/opencv.hpp>
 
-#include "ImageProcessing/MatrixWrapper.hpp"
-#include "ImageProcessing/Matrix.hpp"
-#include "ImageProcessing/Foreach.hpp"
-#include "ImageProcessing/ForeachPair.hpp"
-#include "ImageProcessing/IdxMap.hpp"
+#include "his/ImageProcessing.h"
+
 
 /*
 	A gray scale convertion sample.
@@ -77,9 +74,9 @@ void FadingByIdxMap()
 		if (idx.x < image.cols / 2)
 		{
 			// linearly blend from 0 to 1 in range[0, cols)
-			float factor = 2.0 * idx.x / image.cols;
+			float factor = 2.f * idx.x / image.cols;
 			for (int i = 0; i < 3; ++i)
-				rgb[i] *= factor;
+				rgb[i] = uchar(rgb[i] * factor + 0.5f);
 		}
 	});
 	cv::imwrite("lena_fading.jpg", image);
