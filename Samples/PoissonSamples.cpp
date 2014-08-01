@@ -26,8 +26,8 @@ enum Mask { OUTSIDE = 0, INSIDE = 255, };
 */
 void PoissonImageEditing()
 {
-	cv::Mat3b image1 = cv::imread("lena.jpg");
-	cv::Mat3b image2 = cv::imread("monalisa.jpg");
+	cv::Mat3b image1 = cv::imread("monalisa.jpg");
+	cv::Mat3b image2 = cv::imread("lena2.jpg");
 	cv::Mat1b mask = cv::imread("face.png", cv::IMREAD_GRAYSCALE);
 	
 	his::Matrix<int> id_map(image1.rows, image2.cols);
