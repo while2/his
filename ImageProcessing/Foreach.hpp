@@ -43,7 +43,7 @@ namespace his
 
 
 template<class Mat1, class Func>
-void for_each(Mat1 mat, Func func)
+void for_each(Mat1 &mat, Func func)
 {
 	Mat1::FOR_EACH_ABLE;
 
@@ -61,7 +61,7 @@ void for_each(Mat1 mat, Func func)
 
 // 2 matrices
 template<class Mat1, class Mat2, class Func>
-void for_each(Mat1 mat1, Mat2 mat2, Func func)
+void for_each(Mat1 &mat1, Mat2 &mat2, Func func)
 {
 	Mat1::FOR_EACH_ABLE;
 	Mat2::FOR_EACH_ABLE;
@@ -83,7 +83,7 @@ void for_each(Mat1 mat1, Mat2 mat2, Func func)
 
 // 3 matrices
 template<class Mat1, class Mat2, class Mat3, class Func>
-void for_each(Mat1 mat1, Mat2 mat2, Mat3 mat3, Func func)
+void for_each(Mat1 &mat1, Mat2 &mat2, Mat3 &mat3, Func func)
 {
 	Mat1::FOR_EACH_ABLE;
 	Mat2::FOR_EACH_ABLE;
@@ -108,7 +108,7 @@ void for_each(Mat1 mat1, Mat2 mat2, Mat3 mat3, Func func)
 
 // 4 matrices
 template<class Mat1, class Mat2, class Mat3, class Mat4, class Func>
-void for_each(Mat1 mat1, Mat2 mat2, Mat3 mat3, Mat4 &mat4, Func func)
+void for_each(Mat1 &mat1, Mat2 &mat2, Mat3 &mat3, Mat4 &mat4, Func func)
 {
 	Mat1::FOR_EACH_ABLE;
 	Mat2::FOR_EACH_ABLE;
