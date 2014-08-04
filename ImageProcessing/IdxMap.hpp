@@ -34,20 +34,20 @@ namespace his
 */
 struct Idx
 {
+	enum Step {};
 	int x, y;
 	Idx(int _x, int _y) : x(_x), y(_y) {}
-
-	// move pointer in the same row
-	void operator+=(int _x) { x += _x; }
-
-	// move pointer to the next row
-	enum Step {};
-	void operator+=(Step step) { ++y; }
-
-	Idx operator+(int _x) { return Idx(x+_x, y); }
-	const Idx &operator*() { return *this; }
 };
 
+// move pointer in the same row
+void operator+=(Idx &idx, int _x) { idx.x += _x; }
+
+// move pointer to the next row
+void operator+=(Idx &idx, Idx::Step step) { idx.y++; }
+
+Idx operator+(const Idx &idx, int x) { return Idx(idx.x + x, idx.y); }
+
+const Idx &operator* (const Idx &idx) { return idx; }
 
 /*
 	A Matrix like data type, with each element a Idx indicating the 
