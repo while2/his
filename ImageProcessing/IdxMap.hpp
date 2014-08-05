@@ -40,14 +40,14 @@ struct Idx
 };
 
 // move pointer in the same row
-void operator+=(Idx &idx, int _x) { idx.x += _x; }
+inline void operator+=(Idx &idx, int _x) { idx.x += _x; }
 
 // move pointer to the next row
-void operator+=(Idx &idx, Idx::Step step) { idx.y++; }
+inline void operator+=(Idx &idx, Idx::Step step) { idx.y++; }
 
-Idx operator+(const Idx &idx, int x) { return Idx(idx.x + x, idx.y); }
+inline Idx operator+(const Idx &idx, int x) { return Idx(idx.x + x, idx.y); }
 
-const Idx &operator* (const Idx &idx) { return idx; }
+inline const Idx &operator* (const Idx &idx) { return idx; }
 
 /*
 	A Matrix like data type, with each element a Idx indicating the 
