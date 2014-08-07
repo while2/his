@@ -43,7 +43,7 @@ struct Idx
 inline void operator+=(Idx &idx, int _x) { idx.x += _x; }
 
 // move pointer to the next row
-inline void operator+=(Idx &idx, Idx::Step step) { idx.y++; }
+inline void operator+=(Idx &idx, Idx::Step step) { idx.y += 1; }
 
 inline Idx operator+(const Idx &idx, int x) { return Idx(idx.x + x, idx.y); }
 
@@ -66,21 +66,32 @@ class IdxMap
 public:
 	IdxMap(int rows, int cols) 
 		: m_rows(rows), m_cols(cols)
+		, m_start(0, 0)
 	{}
 
 	template<typename T>
 	IdxMap(const MatrixWrapper<T> mat)
 		: m_rows(mat.rows()), m_cols(mat.cols())
+		, m_start(0, 0)
 	{}
 
-	Idx operator[](int y)			{ return Idx(0, y); }
-	Idx operator()(int y, int x)	{ return Idx(x, y); }
+	IdxMap crop(int top, int left, int rows, int cols) const
+	{
+		assert(top + rows <= m_rows && left + cols <= m_cols);
+		IdxMap sub(rows, cols);
+		sub.m_start.x = left, sub.m_start.y = top;
+		return sub;
+	}
+
+	Idx operator[](int y)			{ return Idx(m_start.x, m_start.y + y); }
+	Idx operator()(int y, int x)	{ return Idx(m_start.x + x, m_start.y + y); }
 
 	// size
 	int rows() const { return m_rows; }
 	int cols() const { return m_cols; }
 	
 	int m_rows, m_cols;
+	Idx m_start;
 
 	// for_each methods add step() to the pointer to jump to next row,
 	// IdxMap return a different type to distinguish the change of row
