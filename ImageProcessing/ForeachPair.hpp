@@ -34,9 +34,10 @@ namespace his
 
 
 template<typename Mat1, class Func>
-void for_each_pair(Mat1 &mat, Func func)
+void for_each_pair(Mat1 mat, Func func)
 {
-	Mat1::FOR_EACH_ABLE;
+    assert(Mat1::FOR_EACH_ABLE == Mat1::FOR_EACH_ABLE);
+    
 	// first column
 	auto up = mat[0];
 	auto down = mat[1];
@@ -71,12 +72,13 @@ void for_each_pair(Mat1 &mat, Func func)
 }
 
 template<class Mat1, class Mat2, class Func>
-void for_each_pair(Mat1 &mat1, Mat2 &mat2, Func func)
+void for_each_pair(Mat1 mat1, Mat2 mat2, Func func)
 {
-	Mat1::FOR_EACH_ABLE;
-	Mat2::FOR_EACH_ABLE;
+    assert(Mat1::FOR_EACH_ABLE == Mat1::FOR_EACH_ABLE);
+    assert(Mat2::FOR_EACH_ABLE == Mat2::FOR_EACH_ABLE);
 
 	assert(mat1.rows() == mat2.rows() && mat1.cols() == mat2.cols());
+    
 	// first column
 	auto up1 = mat1[0];
 	auto down1 = mat1[1];
@@ -121,14 +123,15 @@ void for_each_pair(Mat1 &mat1, Mat2 &mat2, Func func)
 }
 
 template<class Mat1, class Mat2, class Mat3, class Func>
-void for_each_pair(Mat1 &mat1, Mat2 &mat2, Mat3 &mat3, Func func)
+void for_each_pair(Mat1 mat1, Mat2 mat2, Mat3 mat3, Func func)
 {
-	Mat1::FOR_EACH_ABLE;
-	Mat2::FOR_EACH_ABLE;
-	Mat3::FOR_EACH_ABLE;
-
+    assert(Mat1::FOR_EACH_ABLE == Mat1::FOR_EACH_ABLE);
+    assert(Mat2::FOR_EACH_ABLE == Mat2::FOR_EACH_ABLE);
+    assert(Mat3::FOR_EACH_ABLE == Mat3::FOR_EACH_ABLE);
+    
 	assert(mat1.rows() == mat2.rows() && mat1.cols() == mat2.cols());
 	assert(mat1.rows() == mat3.rows() && mat1.cols() == mat3.cols());
+    
 	// first column
 	auto up1 = mat1[0];
 	auto down1 = mat1[1];
@@ -192,12 +195,12 @@ void for_each_pair(Mat1 &mat1, Mat2 &mat2, Mat3 &mat3, Func func)
 }
 
 template<class Mat1, class Mat2, class Mat3, class Mat4, class Func>
-void for_each_pair(Mat1 &mat1, Mat2 &mat2, Mat3 &mat3, Mat4 &mat4, Func func)
+void for_each_pair(Mat1 mat1, Mat2 mat2, Mat3 mat3, Mat4 mat4, Func func)
 {
-	Mat1::FOR_EACH_ABLE;
-	Mat2::FOR_EACH_ABLE;
-	Mat3::FOR_EACH_ABLE;
-	Mat4::FOR_EACH_ABLE;
+    assert(Mat1::FOR_EACH_ABLE == Mat1::FOR_EACH_ABLE);
+    assert(Mat2::FOR_EACH_ABLE == Mat2::FOR_EACH_ABLE);
+    assert(Mat3::FOR_EACH_ABLE == Mat3::FOR_EACH_ABLE);
+    assert(Mat4::FOR_EACH_ABLE == Mat4::FOR_EACH_ABLE);
 
 	assert(mat1.rows() == mat2.rows() && mat1.cols() == mat2.cols());
 	assert(mat1.rows() == mat3.rows() && mat1.cols() == mat3.cols());

@@ -19,6 +19,8 @@
 #include <cassert>
 #include <memory>
 
+#include "IdxMap.hpp"
+
 namespace his
 {
 

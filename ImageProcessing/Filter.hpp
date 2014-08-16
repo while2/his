@@ -91,11 +91,11 @@ namespace his
 		as `accm`, thus they share the intermediate results.
 */
 template<class Mat1, class Mat2, class Mat3, class AccmFunc, class EvalFunc>
-void filter(const Mat1 &input, Mat2 &output, const Mat3 &kernel, AccmFunc accm, EvalFunc eval)
+void filter(const Mat1 input, Mat2 output, const Mat3 kernel, AccmFunc accm, EvalFunc eval)
 {
-	Mat1::FOR_EACH_ABLE;
-	Mat2::FOR_EACH_ABLE;
-	Mat3::FOR_EACH_ABLE;
+    assert (Mat1::FOR_EACH_ABLE == Mat1::FOR_EACH_ABLE);
+    assert (Mat2::FOR_EACH_ABLE == Mat2::FOR_EACH_ABLE);
+    assert (Mat3::FOR_EACH_ABLE == Mat3::FOR_EACH_ABLE);
 
 	assert(kernel.rows() % 2 == 1 && kernel.cols() % 2 == 1);
 	assert(kernel.rows()*2+1 < input.rows() && kernel.cols()*2+1 < input.cols());

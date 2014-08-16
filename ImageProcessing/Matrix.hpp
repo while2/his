@@ -36,10 +36,10 @@ public:
 	
 	void create(int rows, int cols)
 	{
-		m_rows = rows, m_cols = cols, m_step = cols;
+		this->m_rows = rows, this->m_cols = this->m_step = cols;
 		m_data = std::shared_ptr<T>(new T[rows * cols], 
 			[](const T *p) { delete []p;});
-		m_start = m_data.get();
+		this->m_start = m_data.get();
 	}
 
 	/*
@@ -63,9 +63,9 @@ public:
 	*/
 	Matrix crop(int top, int left, int rows, int cols) const
 	{
-		assert(top + rows <= m_rows && left + cols <= m_cols);
+		assert(top + rows <= this->m_rows && left + cols <= this->m_cols);
 		Matrix<T> sub = *this;
-		sub.m_start = m_start + m_step * top + left;
+		sub.m_start = this->m_start + this->m_step * top + left;
 		sub.m_rows = rows;
 		sub.m_cols = cols;
 		return sub;
