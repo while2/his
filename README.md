@@ -66,9 +66,9 @@ his::for_each_pair(gray_wrapper, laplace_wrapper,
 	f2 += (b2 - b1);
 });
 ```
-See [Poisson Image Editing Sample](Sample/PoissonSamples.cpp).
+See [Poisson Image Editing Sample](Samples/PoissonSamples.cpp).
 
-An this [post](http://while2.github.io/abstraction-of-iterations.html) explains more details.
+An this [post](http://while2.github.io/abstraction-of-image-iterations/) explains more details.
 
 ## Access to 2d-indices in iteration
 [IdxMap.hpp](ImageProcessing/IdxMap.hpp)
@@ -126,7 +126,7 @@ his::filter(input_image, output_image, kernel,
 });
 ```
 
-This [post](http://while2.github.io/abstraction-of-filter.html) explains more details.
+This [post](http://while2.github.io/abstraction-of-2d-filter/) explains more details.
 
 #Miscellaneous
 ## 'The' semantics: a global variable utility
